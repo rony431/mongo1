@@ -11,8 +11,8 @@ var schema = mongoose.Schema({
 });
 // definimos el modelo
 var Visitor = mongoose.model("Visitor", schema);
-var initialHeader = "<html><head></head><body><table><th>Id</th><th>Name</th><th>Visits</th>";
-var finalCloser = "</table></body></html>"
+var initialHeader = "<html><head></head><body><table><thead><tr><th>Id</th><th>Name</th><th>Visits</th></tr>";
+var finalCloser = "</thead></table><thead></body></html>"
 app.get('/', (req, res) => {
  
   let nombre = "";

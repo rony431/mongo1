@@ -1,12 +1,16 @@
-a(href="/register") Registrarse
-div
-  table
-    thead
-      tr
-        th Name
-        th Email 
-    tbody
-     each visit in visitors
-        tr
-          td= visit.name
-          td= visit.email        
+html
+    head 
+        title test
+    body 
+        a(href="/register") Registrarse
+        div
+            table
+                thead
+                    tr
+                        th Name
+                        th Email 
+                tbody
+                    each visit in visitors
+                        tr
+                            td= visit.name
+                            td= visit.email 

@@ -49,9 +49,9 @@ app.post('/login', (req, res) => {
   Visitor.findOne({ "email": emailFormLogin }, function(err, visitor) {
     if (err) return console.error(err);
     bcrypt.compare(passFormLogin, visitor.password).then(function(res){
-    req.session.userId = visitor._id;  
+    req.session.userId = visitor._id; 
+    res.redirect('/') 
     });
-    res.redirect('/')
   });
   
 })

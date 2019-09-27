@@ -39,7 +39,7 @@ app.get('/register', (req, res) => {
   res.render('index');
 });
 app.get('/logout', (req, res) => {
-  req.session = null;
+  req.session.userId = null;
   res.redirect('/')
 });
 app.post('/login', (req, res) => {
@@ -48,10 +48,14 @@ app.post('/login', (req, res) => {
   
   Visitor.findOne({ "email": emailFormLogin }, function(err, visitor) {
     if (err) return console.error(err);
-    bcrypt.compare(passFormLogin, visitor.password).then(function(res){
-    req.session.userId = visitor._id; 
-    res.redirect('/') 
-    });
+    bcrypt.compare(passFormLogin, visitor.password).then(function(match){
+    if (match){
+      req.session.userId = visitor._id; 
+      res.redirect('/') 
+    } else {
+      res.redirect('/login') 
+    } 
+   });
   });
   
 })
@@ -62,9 +66,9 @@ app.post('/register', (req, res) => {
   bcrypt.hash(passForm,10).then(function(hash){
     Visitor.create({ name: nameForm, email: emailForm, password:hash }, function(err) {
       if (err) return console.error(err);
+      res.redirect('/')
     });
   });
-  res.redirect('/')
 })
 
 

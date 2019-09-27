@@ -3,14 +3,13 @@ html
 
     body 
         a(href="/register") Registrarse
-        div
-            table
-                thead
+        table
+            thead
+                tr
+                    th Name
+                    th Email 
+            tbody
+                each visit in visitors
                     tr
-                        th Name
-                        th Email 
-                tbody
-                    each visit in visitors
-                        tr
-                            td= visit.name
-                            td= visit.email 
+                        td= visit.name
+                        td= visit.email 
